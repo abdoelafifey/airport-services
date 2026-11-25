@@ -1,26 +1,97 @@
 @import "tailwindcss";
 
+/*
+  Design tokens. Every brand value lives here so the real brand can be swapped in one
+  place. All values are PLACEHOLDERS until the client sends the brand.
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Surfaces: white, with one light gray for section breaks */
+  --canvas: #ffffff;
+  --surface: #ffffff;
+  --surface-muted: #f7f7f7;
+  --line: #dddddd;
+  --line-soft: #ebebeb;
+
+  /* Ink */
+  --ink: #222222;
+  --ink-soft: #5f5f5f;
+  --ink-faint: #767676;
+
+  /* Primary: red (placeholder) */
+  --accent: #d9202c;
+  --accent-hover: #bf1b26;
+  --accent-ink: #ffffff;
+  --accent-soft: #fdecee;
+
+  /* Status */
+  --success: #0a7f3f;
+  --warning: #b86b00;
+  --danger: #c4161f;
+
+  /* Shape: small, like the references */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Layout */
+  --page-max: 1280px;
+  --page-gutter: clamp(16px, 4vw, 40px);
+
+  --ff: "DM Sans Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+
+  --font-sans: var(--ff);
+
+  --text-h1: clamp(2rem, 4.2vw, 3.25rem);
+  --text-h2: clamp(1.5rem, 2.4vw, 2rem);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--canvas);
+  color: var(--ink);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--ff);
+  background: var(--canvas);
+  color: var(--ink);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  opacity: 0.55;
+  cursor: pointer;
 }
