@@ -24,13 +24,6 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-2">
-          <Link
-            href="/manage"
-            className="hidden rounded-md px-3 py-2 text-sm font-medium text-ink transition-colors hover:bg-surface-muted md:inline-flex"
-          >
-            Manage booking
-          </Link>
-
           {/* No-JS mobile menu */}
           <details className="relative md:hidden">
             <summary
@@ -43,7 +36,7 @@ export function Header() {
               aria-label="Mobile"
               className="absolute right-0 top-12 w-64 rounded-lg border border-line bg-white py-2 shadow-[0_8px_28px_rgba(0,0,0,0.14)]"
             >
-              {[...serviceNav, { label: "Manage booking", href: "/manage" }].map((item) => (
+              {serviceNav.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}

@@ -23,6 +23,7 @@ export const legalNav = [
 ] as const;
 
 export const supportNav = [
+  { label: "Find my booking", href: "/manage" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
 ] as const;
