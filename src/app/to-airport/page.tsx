@@ -16,7 +16,7 @@ export default async function ToAirportPage() {
     <ServicePage
       title="To Airport"
       intro="A car from your hotel to the airport, on time, at a price you see before you pay."
-      photo="/images/transfer.jpg"
+      photo="/images/to-airport-page.jpg"
       included={[
         "Pickup from your hotel or address",
         "A fixed price, no meter",

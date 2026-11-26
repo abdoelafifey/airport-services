@@ -38,18 +38,33 @@ const commonConditions = [
   "Children under 2 enter free but must be added to the booking.",
 ];
 
-const photoPool = ["lounge-atrium", "lounge-garden", "lounge-window", "lounge-buffet", "lounge-rest"];
-/** Lounges whose photo matches their name; the rest rotate through the pool. Replace with real photography per lounge. */
+const photoPool = [
+  "lounge-garden", "lounge-buffet", "lounge-atrium", "lounge-rest", "lounge-window",
+  "lounge-auh-oasis", "lounge-ruh-majlis", "lounge-jed-dune", "lounge-doh-pearl", "lounge-lhr-elm",
+  "lounge-lhr-northgate", "lounge-cdg-seine", "lounge-jfk-skyline", "lounge-sin-lotus",
+];
+/** One distinct cover photo per lounge. Replace with real photography per lounge. */
 const primaryPhoto: Record<string, string> = {
   "cai-t3-garden": "lounge-garden",
+  "cai-t2-meridian": "lounge-buffet",
   "dxb-t3-atrium": "lounge-atrium",
+  "dxb-t1-horizon": "lounge-rest",
   "ist-main-bosphorus": "lounge-window",
+  "auh-a-oasis": "lounge-auh-oasis",
+  "ruh-t5-majlis": "lounge-ruh-majlis",
+  "jed-north-dune": "lounge-jed-dune",
+  "doh-main-pearl": "lounge-doh-pearl",
+  "lhr-t3-elm": "lounge-lhr-elm",
+  "lhr-t5-northgate": "lounge-lhr-northgate",
+  "cdg-t2-seine": "lounge-cdg-seine",
+  "jfk-t4-skyline": "lounge-jfk-skyline",
+  "sin-t3-lotus": "lounge-sin-lotus",
 };
 
+/** Cover photo first, then the next four from the pool for the detail gallery. */
 function photosFor(id: string): string[] {
-  let start = photoPool.indexOf(primaryPhoto[id] ?? "");
-  if (start < 0) start = [...id].reduce((a, c) => a + c.charCodeAt(0), 0) % photoPool.length;
-  return photoPool.map((_, i) => `/images/${photoPool[(start + i) % photoPool.length]}.jpg`);
+  const cover = Math.max(0, photoPool.indexOf(primaryPhoto[id] ?? ""));
+  return Array.from({ length: 5 }, (_, i) => `/images/${photoPool[(cover + i) % photoPool.length]}.jpg`);
 }
 
 function lounge(

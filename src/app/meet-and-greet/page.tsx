@@ -16,7 +16,7 @@ export default async function MeetAndGreetPage() {
     <ServicePage
       title="Meet & Greet"
       intro="Skip the confusion on arrival. A greeter meets you at the airport and takes you to your hotel."
-      photo="/images/meet-greet.jpg"
+      photo="/images/meet-greet-page.jpg"
       included={[
         "A greeter waiting at arrivals with your name",
         "Help with your bags",

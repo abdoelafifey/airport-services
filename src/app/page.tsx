@@ -16,7 +16,7 @@ import { bookingConfig } from "@/config/booking";
 import { getAirports, getLounges, getVehicles } from "@/lib/catalog-service";
 import { formatMoney, money } from "@/lib/utils";
 
-const FEATURED_LOUNGES = ["dxb-t3-atrium", "cai-t3-garden", "ist-main-bosphorus", "doh-main-pearl"];
+const FEATURED_LOUNGES = ["dxb-t3-atrium", "cai-t3-garden", "ruh-t5-majlis", "doh-main-pearl"];
 
 export default async function Home() {
   const [airports, lounges, vehicles] = await Promise.all([
@@ -104,15 +104,15 @@ export default async function Home() {
             {/* Photo collage: each tile links to its service */}
             <div className="grid h-[340px] grid-cols-2 grid-rows-2 gap-3 sm:h-[460px] lg:h-[540px]">
               <Link href="/lounges" className={`${tile} row-span-2`}>
-                <PhotoPlaceholder priority src="/images/hero-lounge.jpg" alt="Airport lounge with runway view" className="size-full transition-transform duration-500 group-hover:scale-[1.03]" />
+                <PhotoPlaceholder priority src="/images/hero-coffee.jpg" alt="Coffee and breakfast in an airport lounge with a runway view" className="size-full transition-transform duration-500 group-hover:scale-[1.03]" />
                 <span className={tileLabel}>Airport Lounge</span>
               </Link>
               <Link href="/meet-and-greet" className={tile}>
-                <PhotoPlaceholder priority src="/images/meet-greet.jpg" alt="Greeter welcoming a traveler at arrivals" className="size-full transition-transform duration-500 group-hover:scale-[1.03]" />
+                <PhotoPlaceholder priority src="/images/hero-terminal.jpg" alt="Traveler walking through a bright airport terminal" className="size-full transition-transform duration-500 group-hover:scale-[1.03]" />
                 <span className={tileLabel}>Meet &amp; Greet</span>
               </Link>
               <Link href="/to-airport" className={tile}>
-                <PhotoPlaceholder priority src="/images/transfer.jpg" alt="Chauffeur opening a car door at the terminal" className="size-full transition-transform duration-500 group-hover:scale-[1.03]" />
+                <PhotoPlaceholder priority src="/images/hero-arrival.jpg" alt="Chauffeur loading luggage at a hotel entrance" className="size-full transition-transform duration-500 group-hover:scale-[1.03]" />
                 <span className={tileLabel}>To Airport</span>
               </Link>
             </div>
@@ -177,7 +177,7 @@ export default async function Home() {
       <section className="py-14">
         <Container className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="relative">
-            <PhotoPlaceholder src="/images/lounge-rest.jpg" alt="Quiet rest area in a lounge" className="aspect-[4/5] w-full rounded-2xl sm:aspect-[5/4]" />
+            <PhotoPlaceholder src="/images/hero-lounge.jpg" alt="Lounge seating with a view of the runway" className="aspect-[4/5] w-full rounded-2xl sm:aspect-[5/4]" />
             <div className="absolute bottom-4 left-4 right-4 max-w-xs rounded-xl bg-white p-4 shadow-[0_8px_28px_rgba(0,0,0,0.2)] sm:bottom-6 sm:left-6">
               <p className="flex items-center gap-2 text-sm font-semibold">
                 <span className="grid size-6 place-items-center rounded-full bg-success text-white">
@@ -230,7 +230,7 @@ export default async function Home() {
       <section className="pt-14">
         <Container>
           <div className="relative overflow-hidden rounded-2xl">
-            <PhotoPlaceholder src="/images/transfer.jpg" alt="" className="h-[320px] w-full sm:h-[360px]" />
+            <PhotoPlaceholder src="/images/closing-sunset.jpg" alt="" className="h-[320px] w-full sm:h-[360px]" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-transparent" />
             <div className="absolute inset-0 flex flex-col justify-center p-6 text-white sm:p-12">
               <h2 className="max-w-md text-[clamp(1.75rem,3.4vw,2.75rem)] font-bold leading-tight tracking-[-0.025em]">
