@@ -3,50 +3,42 @@ import Link from "next/link";
 import { serviceNav } from "@/config/site";
 import { Container } from "./Container";
 import { Logo } from "./Logo";
+import { NavLinks } from "./NavLinks";
 
+/** Floating glass pill. Sticky so page content scrolls underneath and blurs through. */
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-line-soft bg-white">
-      <Container className="flex h-16 items-center justify-between gap-6">
-        <div className="flex items-center gap-10">
+    <header className="sticky top-0 z-40 pt-3 sm:pt-4">
+      <Container>
+        <div className="grid h-14 grid-cols-[1fr_auto] items-center rounded-full border border-white/70 bg-white/65 pl-6 pr-2 shadow-[0_8px_32px_rgba(0,0,0,0.08),0_0_0_1px_rgba(0,0,0,0.04)] backdrop-blur-xl backdrop-saturate-150 md:grid-cols-[1fr_auto_1fr]">
           <Logo />
-          <nav aria-label="Services" className="hidden items-center gap-1 md:flex">
-            {serviceNav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-md px-3 py-2 text-sm font-medium text-ink transition-colors hover:bg-surface-muted"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
+          <NavLinks />
 
-        <div className="flex items-center gap-2">
-          {/* No-JS mobile menu */}
-          <details className="relative md:hidden">
-            <summary
-              className="grid size-10 cursor-pointer list-none place-items-center rounded-md border border-line [&::-webkit-details-marker]:hidden"
-              aria-label="Open menu"
-            >
-              <Menu aria-hidden className="size-5" />
-            </summary>
-            <nav
-              aria-label="Mobile"
-              className="absolute right-0 top-12 w-64 rounded-lg border border-line bg-white py-2 shadow-[0_8px_28px_rgba(0,0,0,0.14)]"
-            >
-              {serviceNav.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="block px-4 py-3 text-sm font-medium hover:bg-surface-muted"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-          </details>
+          <div className="flex justify-end">
+            {/* No-JS mobile menu */}
+            <details className="relative md:hidden">
+              <summary
+                className="grid size-10 cursor-pointer list-none place-items-center rounded-full hover:bg-black/5 [&::-webkit-details-marker]:hidden"
+                aria-label="Open menu"
+              >
+                <Menu aria-hidden className="size-5" />
+              </summary>
+              <nav
+                aria-label="Mobile"
+                className="absolute right-0 top-14 w-64 overflow-hidden rounded-3xl border border-white/70 bg-white/95 p-2 shadow-[0_16px_48px_rgba(0,0,0,0.2)] backdrop-blur-2xl"
+              >
+                {serviceNav.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block rounded-2xl px-4 py-3 text-sm font-medium hover:bg-black/5"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+            </details>
+          </div>
         </div>
       </Container>
     </header>
