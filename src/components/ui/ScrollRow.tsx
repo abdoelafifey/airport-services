@@ -30,17 +30,25 @@ export function ScrollRow({ children, label }: { children: ReactNode; label: str
   const by = (dir: 1 | -1) => ref.current?.scrollBy({ left: dir * ref.current.clientWidth * 0.7, behavior: "smooth" });
 
   const arrow = (dir: 1 | -1, hidden: boolean) => (
-    <button
-      type="button"
-      aria-label={dir === 1 ? "Scroll right" : "Scroll left"}
-      onClick={() => by(dir)}
-      tabIndex={hidden ? -1 : 0}
-      className={`absolute top-0 z-10 hidden size-10 place-items-center rounded-full border border-line bg-white shadow-sm transition hover:border-ink sm:grid ${
-        dir === 1 ? "right-0" : "left-0"
-      } ${hidden ? "pointer-events-none opacity-0" : "opacity-100"}`}
+    <div
+      className={`pointer-events-none absolute top-0 z-10 hidden h-10 w-20 items-center transition-opacity sm:flex ${
+        dir === 1
+          ? "right-0 justify-end bg-linear-to-l from-white from-55% to-transparent"
+          : "left-0 justify-start bg-linear-to-r from-white from-55% to-transparent"
+      } ${hidden ? "opacity-0" : "opacity-100"}`}
     >
-      {dir === 1 ? <ChevronRight aria-hidden className="size-5" /> : <ChevronLeft aria-hidden className="size-5" />}
-    </button>
+      <button
+        type="button"
+        aria-label={dir === 1 ? "Scroll right" : "Scroll left"}
+        onClick={() => by(dir)}
+        tabIndex={hidden ? -1 : 0}
+        className={`grid size-9 place-items-center rounded-full border border-line bg-white shadow-sm hover:border-ink ${
+          hidden ? "pointer-events-none" : "pointer-events-auto"
+        }`}
+      >
+        {dir === 1 ? <ChevronRight aria-hidden className="size-5" /> : <ChevronLeft aria-hidden className="size-5" />}
+      </button>
+    </div>
   );
 
   return (
@@ -80,7 +88,7 @@ export function ScrollRow({ children, label }: { children: ReactNode; label: str
             drag.current.moved = false;
           }
         }}
-        className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:px-12"
+        className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {children}
       </div>
