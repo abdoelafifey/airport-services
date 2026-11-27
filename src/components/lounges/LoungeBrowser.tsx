@@ -38,7 +38,7 @@ export function LoungeBrowser({
   const chip = (active: boolean) =>
     `shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
       active
-        ? "border-accent bg-accent-soft text-accent"
+        ? "border-accent bg-accent-soft text-accent-hover"
         : "border-line bg-white text-ink hover:border-ink"
     }`;
 

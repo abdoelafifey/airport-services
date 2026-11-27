@@ -2,6 +2,7 @@ import { Check } from "lucide-react";
 import { Suspense, type ReactNode } from "react";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { Container } from "@/components/layout/Container";
+import { ButtonLink } from "@/components/ui/button";
 import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
 
 export function ServicePage({
@@ -33,6 +34,7 @@ export function ServicePage({
               </li>
             ))}
           </ul>
+          <ButtonLink href="#book" size="lg" className="mt-7 w-full sm:w-auto">Book now</ButtonLink>
         </div>
         <PhotoPlaceholder priority src={photo} alt={title} className="aspect-[4/3] w-full rounded-2xl" />
       </div>

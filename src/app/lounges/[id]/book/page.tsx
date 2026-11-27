@@ -16,7 +16,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const lounge = await getLounge(id);
-  return { title: lounge ? `Book ${lounge.name}` : "Book a lounge" };
+  return { title: lounge ? `Book ${lounge.name}` : "Book a lounge", robots: { index: false } };
 }
 
 export default async function LoungeBookingPage({ params }: Props) {

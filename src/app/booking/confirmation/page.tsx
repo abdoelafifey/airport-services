@@ -4,7 +4,7 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { Container } from "@/components/layout/Container";
 import { ConfirmationView } from "./ConfirmationView";
 
-export const metadata: Metadata = { title: "Booking confirmed" };
+export const metadata: Metadata = { title: "Booking confirmed", robots: { index: false } };
 
 export default function ConfirmationPage() {
   return (

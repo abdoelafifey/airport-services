@@ -60,6 +60,7 @@ export function BookingCard({
 
   return (
     <aside
+      id="book-card"
       aria-label="Book this lounge"
       className="rounded-lg border border-line bg-white p-6 shadow-[0_6px_24px_rgba(0,0,0,0.12)]"
     >

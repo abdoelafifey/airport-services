@@ -6,7 +6,7 @@ export function Logo() {
   return (
     <Link
       href="/"
-      className="text-[22px] font-bold tracking-tight text-accent"
+      className="-my-2 inline-block py-2 text-[22px] font-bold tracking-tight text-accent"
       aria-label={`${siteConfig.name} home`}
     >
       {siteConfig.name}

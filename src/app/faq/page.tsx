@@ -21,12 +21,12 @@ export default function FaqPage() {
     <LegalPage title="Frequently asked questions" updated="Answers use the current booking rules.">
       <div className="divide-y divide-line border-y border-line">
         {items.map(([q, a]) => (
-          <details key={q} className="group py-5">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold [&::-webkit-details-marker]:hidden">
+          <details key={q} className="group">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-semibold [&::-webkit-details-marker]:hidden">
               {q}
               <span aria-hidden className="text-2xl font-normal leading-none text-ink-soft transition-transform group-open:rotate-45">+</span>
             </summary>
-            <p className="mt-3 leading-relaxed text-ink-soft">{a}</p>
+            <p className="-mt-1 pb-5 leading-relaxed text-ink-soft">{a}</p>
           </details>
         ))}
       </div>

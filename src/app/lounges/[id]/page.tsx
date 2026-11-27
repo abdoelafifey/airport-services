@@ -6,10 +6,12 @@ import { Suspense } from "react";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { Container } from "@/components/layout/Container";
 import { BookingCard } from "@/components/lounges/BookingCard";
+import { MobileBookBar } from "@/components/lounges/MobileBookBar";
 import { amenityMeta } from "@/components/ui/amenities";
 import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
 import { bookingConfig } from "@/config/booking";
 import { getAirport, getLounge, getLounges } from "@/lib/catalog-service";
+import { formatMoney, money } from "@/lib/utils";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -131,7 +133,7 @@ export default async function LoungeDetailsPage({ params }: Props) {
           </section>
         </div>
 
-        <div className="lg:sticky lg:top-24">
+        <div className="scroll-mt-24 lg:sticky lg:top-24">
           <Suspense fallback={<div className="h-96 animate-pulse rounded-lg bg-surface-muted" />}>
             <BookingCard
               loungeId={lounge.id}
@@ -142,6 +144,8 @@ export default async function LoungeDetailsPage({ params }: Props) {
           </Suspense>
         </div>
       </div>
+
+      <MobileBookBar price={formatMoney(money(lounge.priceAdult))} />
     </Container>
   );
 }

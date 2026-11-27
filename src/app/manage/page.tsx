@@ -3,7 +3,7 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { Container } from "@/components/layout/Container";
 import { FindBookingForm } from "./FindBookingForm";
 
-export const metadata: Metadata = { title: "Manage booking" };
+export const metadata: Metadata = { title: "Manage booking", robots: { index: false } };
 
 export default function ManagePage() {
   return (
