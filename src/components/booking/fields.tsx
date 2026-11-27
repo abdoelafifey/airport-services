@@ -3,6 +3,9 @@ import type { ReactNode } from "react";
 export const inputClass =
   "h-12 w-full rounded-md border border-line bg-white px-3.5 text-base text-ink outline-none transition-colors placeholder:text-ink-faint hover:border-ink focus:border-ink focus:shadow-[0_0_0_1px_var(--ink)] aria-[invalid=true]:border-danger aria-[invalid=true]:shadow-[0_0_0_1px_var(--danger)]";
 
+/** Same look as inputClass, with a custom chevron so the dropdown arrow has room instead of sticking to the border. */
+export const selectClass = `${inputClass} select-caret cursor-pointer`;
+
 export function Field({
   label,
   htmlFor,

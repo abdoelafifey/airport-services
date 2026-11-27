@@ -21,7 +21,7 @@ import type {
   VehicleType,
 } from "@/types/booking";
 import type { Airport, Lounge, Vehicle } from "@/types/catalog";
-import { Field, FormSection, inputClass } from "./fields";
+import { Field, FormSection, inputClass, selectClass } from "./fields";
 
 type Props = {
   service: ServiceType;
@@ -165,7 +165,7 @@ export function BookingForm({ service, airports, vehicles, lounge, photo }: Prop
                 value={airportCode}
                 disabled={Boolean(lounge)}
                 onChange={(e) => setAirportCode(e.target.value)}
-                className={`${inputClass} disabled:bg-surface-muted`}
+                className={`${selectClass} disabled:bg-surface-muted`}
               >
                 <option value="" disabled>Choose an airport</option>
                 {airports.map((a) => (
@@ -183,7 +183,7 @@ export function BookingForm({ service, airports, vehicles, lounge, photo }: Prop
               <input id="flightNumber" {...common("flightNumber")} value={flight} onChange={(e) => setFlight(e.target.value)} autoComplete="off" placeholder="MS 777" className={inputClass} />
             </Field>
             <Field label="Terminal" htmlFor="terminal" optional>
-              <select id="terminal" value={terminal} onChange={(e) => setTerminal(e.target.value)} className={inputClass}>
+              <select id="terminal" value={terminal} onChange={(e) => setTerminal(e.target.value)} className={selectClass}>
                 <option value="">Not sure</option>
                 {(airport?.terminals ?? []).map((t) => (
                   <option key={t} value={t}>{t}</option>
@@ -235,7 +235,7 @@ export function BookingForm({ service, airports, vehicles, lounge, photo }: Prop
 
         <FormSection title="Guests">
           <div className="max-w-sm rounded-md border border-line px-3.5 py-2.5">
-            <GuestsPicker value={guests} onChange={(g) => { setGuests(g); clear("guests")(); }} error={errors.guests} />
+            <GuestsPicker value={guests} onChange={(g) => { setGuests(g); clear("guests")(); }} error={errors.guests} triggerClassName="-mx-3.5 -my-2.5 w-[calc(100%+1.75rem)] px-3.5 py-2.5" />
           </div>
         </FormSection>
 

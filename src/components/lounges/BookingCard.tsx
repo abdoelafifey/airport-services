@@ -56,7 +56,7 @@ export function BookingCard({
 
   const cell = "flex flex-col gap-0.5 px-3 py-2.5";
   const cellLabel = "text-[11px] font-bold uppercase tracking-wide text-ink";
-  const cellInput = "w-full bg-transparent text-sm text-ink outline-none";
+  const cellInput = "w-full bg-transparent text-sm text-ink outline-none picker-flush";
 
   return (
     <aside
@@ -80,7 +80,7 @@ export function BookingCard({
           </label>
         </div>
         <div className={cell}>
-          <GuestsPicker value={guests} onChange={setGuests} label="GUESTS" />
+          <GuestsPicker value={guests} onChange={setGuests} label="GUESTS" triggerClassName="-mx-3 -my-2.5 w-[calc(100%+1.5rem)] px-3 py-2.5" />
         </div>
       </div>
 

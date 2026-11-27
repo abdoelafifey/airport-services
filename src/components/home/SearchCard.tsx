@@ -14,7 +14,7 @@ type Props = { airports: Airport[] };
 const field = "flex flex-col gap-1 px-5 py-3 text-left hover:bg-surface-muted";
 const label = "text-xs font-semibold text-ink";
 const input =
-  "w-full bg-transparent text-sm text-ink outline-none placeholder:text-ink-faint";
+  "w-full bg-transparent text-sm text-ink outline-none placeholder:text-ink-faint picker-flush";
 
 export function SearchCard({ airports }: Props) {
   const router = useRouter();
@@ -74,7 +74,7 @@ export function SearchCard({ airports }: Props) {
               required
               value={airport}
               onChange={(e) => setAirport(e.target.value)}
-              className={`${input} cursor-pointer appearance-none ${airport ? "" : "text-ink-faint"}`}
+              className={`${input} select-caret-flush cursor-pointer ${airport ? "" : "text-ink-faint"}`}
             >
               <option value="" disabled>
                 Where are you flying?
@@ -105,7 +105,7 @@ export function SearchCard({ airports }: Props) {
         </label>
 
         <div className={field}>
-          <GuestsPicker value={guests} onChange={setGuests} />
+          <GuestsPicker value={guests} onChange={setGuests} triggerClassName="-mx-5 -my-3 w-[calc(100%+2.5rem)] px-5 py-3" gap="gap-1" />
         </div>
 
         <div className="flex items-center p-3 sm:col-span-2 lg:col-span-1">

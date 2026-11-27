@@ -1,6 +1,6 @@
 "use client";
 
-import { Minus, Plus, Users } from "lucide-react";
+import { ChevronDown, Minus, Plus, Users } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 import { bookingConfig } from "@/config/booking";
 import type { GuestCounts } from "@/types/booking";
@@ -31,11 +31,17 @@ export function GuestsPicker({
   onChange,
   label = "Guests",
   error,
+  triggerClassName = "",
+  gap = "gap-0.5",
 }: {
   value: GuestCounts;
   onChange: (next: GuestCounts) => void;
   label?: string;
   error?: string;
+  /** Extra classes that stretch the trigger over the padding of the cell it sits in, so the whole cell is clickable. */
+  triggerClassName?: string;
+  /** Space between the label and the value, to line up with neighbouring fields. */
+  gap?: string;
 }) {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -65,13 +71,16 @@ export function GuestsPicker({
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((o) => !o)}
-        className="flex w-full flex-col items-start gap-0.5 text-left"
+        className={`flex cursor-pointer items-end justify-between gap-3 text-left ${triggerClassName || "w-full"}`}
       >
-        <span className="text-xs font-semibold text-ink">{label}</span>
-        <span className="flex w-full items-center gap-2 text-sm text-ink">
-          <Users aria-hidden className="size-4 text-ink-faint" />
-          <span className="truncate">{summarizeGuests(value)}</span>
+        <span className={`flex min-w-0 flex-col items-start ${gap}`}>
+          <span className="text-xs font-semibold text-ink">{label}</span>
+          <span className="flex items-center gap-2 text-sm text-ink">
+            <Users aria-hidden className="size-4 shrink-0 text-ink-faint" />
+            <span className="truncate">{summarizeGuests(value)}</span>
+          </span>
         </span>
+        <ChevronDown aria-hidden strokeWidth={2.2} className={`mb-0.5 size-4 shrink-0 text-ink transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
 
       {open ? (

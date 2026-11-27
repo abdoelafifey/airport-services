@@ -4,7 +4,7 @@ import { BadgeCheck, Info } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { BookingSummary, bookingTitle } from "@/components/booking/BookingSummary";
-import { Field, inputClass } from "@/components/booking/fields";
+import { Field, inputClass, selectClass } from "@/components/booking/fields";
 import { GuestsPicker } from "@/components/ui/GuestsPicker";
 import { ButtonLink, buttonClass } from "@/components/ui/button";
 import { airports, vehicles } from "@/data/catalog";
@@ -61,10 +61,15 @@ function Loaded({ booking: b, token, reload }: { booking: Booking; token: string
         <section aria-labelledby="details">
           <h2 id="details" className="text-[22px] font-bold tracking-[-0.01em]">Booking details</h2>
           <div className="mt-2"><BookingSummary booking={b} /></div>
+          {!cancelled && policy.canCancel ? (
+            <button type="button" onClick={() => setMode("cancel")} className="mt-6 text-sm font-semibold text-danger underline-offset-4 hover:underline">
+              Cancel booking
+            </button>
+          ) : null}
         </section>
 
-        <aside className="rounded-lg border border-line p-6 shadow-[0_6px_24px_rgba(0,0,0,0.1)] lg:sticky lg:top-24">
-          <h2 className="font-bold">Edit or cancel</h2>
+        <aside className="order-first rounded-lg border border-line p-6 shadow-[0_6px_24px_rgba(0,0,0,0.1)] lg:sticky lg:top-24 lg:order-none">
+          <h2 className="font-bold">Change your booking</h2>
           {cancelled ? (
             <p className="mt-3 text-sm text-ink-soft">This booking was cancelled{b.cancelledAt ? ` on ${formatDateTime(new Date(b.cancelledAt))}` : ""}.</p>
           ) : (
@@ -77,12 +82,9 @@ function Loaded({ booking: b, token, reload }: { booking: Booking; token: string
                     ? "The free change window has closed. You can still cancel; any refund follows the cancellation policy."
                     : "This booking has started, so it can no longer be changed."}
               </p>
-              <div className="mt-5 space-y-3">
+              <div className="mt-5">
                 <button type="button" disabled={!policy.canAmend} onClick={() => setMode("edit")} className={buttonClass({ variant: "primary", size: "lg", className: "w-full" })}>
                   Edit booking
-                </button>
-                <button type="button" disabled={!policy.canCancel} onClick={() => setMode("cancel")} className="inline-flex h-10 w-full items-center justify-center text-sm font-semibold text-danger underline-offset-4 transition-colors hover:underline disabled:pointer-events-none disabled:opacity-40">
-                  Cancel booking
                 </button>
               </div>
             </>
@@ -188,7 +190,7 @@ function EditPanel({ booking: b, token, onClose, onDone }: { booking: Booking; t
         <div>
           <span className="mb-1.5 block text-sm font-semibold">Guests</span>
           <div className="rounded-md border border-line px-3.5 py-2.5">
-            <GuestsPicker value={guests} onChange={(g) => { setGuests(g); touch(); }} error={errors.guests} />
+            <GuestsPicker value={guests} onChange={(g) => { setGuests(g); touch(); }} error={errors.guests} triggerClassName="-mx-3.5 -my-2.5 w-[calc(100%+1.75rem)] px-3.5 py-2.5" />
           </div>
         </div>
         {b.service !== "lounge" ? (
@@ -198,7 +200,7 @@ function EditPanel({ booking: b, token, onClose, onDone }: { booking: Booking; t
         ) : null}
         {b.service === "to-airport" ? (
           <Field label="Vehicle" htmlFor="m-vehicle" className="sm:col-span-2">
-            <select id="m-vehicle" value={vehicle} onChange={(e) => { setVehicle(e.target.value as VehicleType); touch(); }} className={inputClass}>
+            <select id="m-vehicle" value={vehicle} onChange={(e) => { setVehicle(e.target.value as VehicleType); touch(); }} className={selectClass}>
               {vehicles.map((v) => <option key={v.type} value={v.type}>{v.label} ({formatMoney({ amount: v.basePrice, currency: "USD" })})</option>)}
             </select>
           </Field>
