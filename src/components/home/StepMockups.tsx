@@ -6,9 +6,10 @@ const frame = "overflow-hidden rounded-lg border border-line bg-white shadow-[0_
 export function SearchMock() {
   return (
     <div aria-hidden className={frame}>
-      <div className="flex gap-4 border-b border-line-soft px-4 text-xs font-semibold">
+      <div className="flex gap-3.5 whitespace-nowrap border-b border-line-soft px-4 text-[11px] font-semibold">
         <span className="-mb-px border-b-2 border-accent py-2.5">Airport Lounge</span>
         <span className="py-2.5 text-ink-soft">Meet &amp; Greet</span>
+        <span className="py-2.5 text-ink-soft">To Airport</span>
       </div>
       <div className="space-y-2 p-4">
         <div className="flex items-center gap-2 rounded-md border border-line px-3 py-2.5 text-xs">
