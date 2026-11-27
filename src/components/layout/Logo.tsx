@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 
-/** Placeholder wordmark. Replace with the real logo when it arrives. */
+/** Text wordmark from the brand name. Replace with the real logo when it arrives. */
 export function Logo() {
   return (
     <Link

@@ -1,9 +1,10 @@
 /**
- * Brand and navigation. PLACEHOLDERS until the client sends the real brand.
- * Swap `name`, the logo component and the accent token in globals.css.
+ * Brand and navigation. The name and domain are real. The logo, accent color and
+ * contact details are still PLACEHOLDERS until the client sends them.
  */
 export const siteConfig = {
-  name: "Brand Name",
+  name: "Juel Airport Concierge",
+  url: "https://juelconcierge.com",
   description:
     "Book airport lounges, meet & greet and hotel-to-airport transfers. Confirmation goes straight to your email.",
   supportEmail: "support@example.com",
