@@ -1,4 +1,5 @@
 import {
+  ArrowUpRight,
   Check,
   Headset,
   MailCheck,
@@ -34,23 +35,23 @@ export default async function Home() {
     {
       href: "/lounges",
       title: "Airport Lounge",
-      photo: "/images/lounge-window.jpg",
-      text: "Relax before your flight. Choose a lounge, pay, walk in.",
-      price: `From ${formatMoney(money(Math.min(...lounges.map((l) => l.priceAdult))))}`,
+      photo: "/images/hero-coffee.jpg",
+      alt: "Coffee and breakfast in an airport lounge with a runway view",
+      sub: `From ${formatMoney(money(Math.min(...lounges.map((l) => l.priceAdult))))} · ${lounges.length} lounges`,
     },
     {
       href: "/meet-and-greet",
       title: "Meet & Greet",
-      photo: "/images/meet-greet.jpg",
-      text: "Met at the airport and taken to your hotel.",
-      price: `From ${formatMoney(money(bookingConfig.prices.meetGreetPerAdult))}`,
+      photo: "/images/hero-terminal.jpg",
+      alt: "Traveler walking through a bright airport terminal",
+      sub: `From ${formatMoney(money(bookingConfig.prices.meetGreetPerAdult))} per adult`,
     },
     {
       href: "/to-airport",
       title: "To Airport",
-      photo: "/images/transfer.jpg",
-      text: "A car from your hotel to the airport, on time.",
-      price: `From ${formatMoney(money(Math.min(...vehicles.map((v) => v.basePrice))))}`,
+      photo: "/images/hero-arrival.jpg",
+      alt: "Chauffeur loading luggage at a hotel entrance",
+      sub: `Cars from ${formatMoney(money(Math.min(...vehicles.map((v) => v.basePrice))))}`,
     },
   ];
 
@@ -74,54 +75,47 @@ export default async function Home() {
     { value: `${freeChangeHoursBefore}h`, label: "free cancellation window" },
   ];
 
-  const tile = "group relative block overflow-hidden rounded-2xl";
-  const tileLabel =
-    "absolute bottom-3 left-3 rounded-full bg-white px-3.5 py-1.5 text-sm font-semibold shadow-[0_2px_10px_rgba(0,0,0,0.15)]";
-
   return (
     <>
       {/* Hero */}
-      <section className="pb-10 pt-8 sm:pt-12">
+      <section className="pb-10 pt-12 sm:pt-16">
         <Container>
-          <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14">
-            <div>
-              <h1 className="text-[clamp(2.5rem,5.4vw,4.25rem)] font-bold leading-[1.04] tracking-[-0.035em] text-balance">
-                Your airport, sorted before you&nbsp;land.
-              </h1>
-              <p className="mt-5 max-w-md text-lg text-ink-soft">
-                Book lounges, meet &amp; greet and transfers in one place. Confirmed by email in minutes.
-              </p>
-              <ul className="mt-6 space-y-2.5 text-[15px]">
-                {["No account needed", `Free changes up to ${freeChangeHoursBefore} hours before`, "Manage everything from one email link"].map((t) => (
-                  <li key={t} className="flex items-center gap-2.5">
-                    <Check aria-hidden className="size-4 text-success" strokeWidth={2.5} /> {t}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Photo collage: each tile links to its service */}
-            <div className="grid h-[340px] grid-cols-2 grid-rows-2 gap-3 sm:h-[460px] lg:h-[540px]">
-              <Link href="/lounges" className={`${tile} row-span-2`}>
-                <PhotoPlaceholder priority src="/images/hero-coffee.jpg" alt="Coffee and breakfast in an airport lounge with a runway view" className="size-full transition-transform duration-500 group-hover:scale-[1.03]" />
-                <span className={tileLabel}>Airport Lounge</span>
-              </Link>
-              <Link href="/meet-and-greet" className={tile}>
-                <PhotoPlaceholder priority src="/images/hero-terminal.jpg" alt="Traveler walking through a bright airport terminal" className="size-full transition-transform duration-500 group-hover:scale-[1.03]" />
-                <span className={tileLabel}>Meet &amp; Greet</span>
-              </Link>
-              <Link href="/to-airport" className={tile}>
-                <PhotoPlaceholder priority src="/images/hero-arrival.jpg" alt="Chauffeur loading luggage at a hotel entrance" className="size-full transition-transform duration-500 group-hover:scale-[1.03]" />
-                <span className={tileLabel}>To Airport</span>
-              </Link>
-            </div>
+          <div className="mx-auto max-w-4xl text-center">
+            <h1 className="text-[clamp(2.4rem,5vw,4.1rem)] font-bold leading-[1.04] tracking-[-0.04em] text-balance">
+              Everything for your airport day, in one place.
+            </h1>
+            <p className="mx-auto mt-5 max-w-xl text-lg text-ink-soft text-balance">
+              Lounges, meet &amp; greet and transfers. Book in minutes, manage from your email.
+            </p>
           </div>
-
-          <div className="mt-10">
+          <div className="mx-auto mt-10 max-w-5xl">
             <SearchCard airports={airports} />
           </div>
 
-          <dl className="mt-8 grid grid-cols-2 gap-y-6 border-t border-line-soft pt-8 sm:grid-cols-4">
+          {/* The three services: panels expand on hover (desktop) */}
+          <div className="mt-12 flex h-[560px] flex-col gap-3 sm:h-[460px] sm:flex-row">
+            {services.map((s) => (
+              <Link
+                key={s.href}
+                href={s.href}
+                className="group relative min-h-0 flex-1 overflow-hidden rounded-3xl transition-[flex-grow] duration-500 sm:hover:flex-[1.6]"
+              >
+                <PhotoPlaceholder priority src={s.photo} alt={s.alt} className="absolute inset-0 size-full transition-transform duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(0,0,0,0.7)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-6 text-white">
+                  <div>
+                    <p className="text-2xl font-bold tracking-[-0.01em]">{s.title}</p>
+                    <p className="mt-1 text-sm text-white/85">{s.sub}</p>
+                  </div>
+                  <span className="grid size-11 shrink-0 place-items-center rounded-full bg-white text-ink transition-transform group-hover:rotate-45">
+                    <ArrowUpRight aria-hidden className="size-5" />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <dl className="mt-10 grid grid-cols-2 gap-y-6 border-t border-line-soft pt-8 sm:grid-cols-4">
             {stats.map((s) => (
               <div key={s.label} className="sm:border-l sm:border-line-soft sm:pl-6 sm:first:border-0 sm:first:pl-0">
                 <dd className="text-3xl font-bold tracking-[-0.02em]">{s.value}</dd>
@@ -129,25 +123,6 @@ export default async function Home() {
               </div>
             ))}
           </dl>
-        </Container>
-      </section>
-
-      {/* Services */}
-      <section className="py-12">
-        <Container>
-          <h2 className="text-(length:--text-h2) font-bold tracking-[-0.02em]">Choose your service</h2>
-          <div className="mt-6 grid gap-6 sm:grid-cols-3">
-            {services.map((s) => (
-              <Link key={s.href} href={s.href} className="group block">
-                <div className="overflow-hidden rounded-xl">
-                  <PhotoPlaceholder src={s.photo} alt={s.title} className="aspect-[4/3] w-full transition-transform duration-500 group-hover:scale-[1.04]" />
-                </div>
-                <h3 className="mt-3 text-xl font-bold group-hover:underline">{s.title}</h3>
-                <p className="mt-1 text-ink-soft">{s.text}</p>
-                <p className="mt-2 font-semibold">{s.price}</p>
-              </Link>
-            ))}
-          </div>
         </Container>
       </section>
 
@@ -232,7 +207,7 @@ export default async function Home() {
             <PhotoPlaceholder src="/images/closing-sunset.jpg" alt="" className="h-[320px] w-full sm:h-[360px]" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-transparent" />
             <div className="absolute inset-0 flex flex-col justify-center p-6 text-white sm:p-12">
-              <h2 className="max-w-md text-[clamp(1.75rem,3.4vw,2.75rem)] font-bold leading-tight tracking-[-0.025em]">
+              <h2 className="max-w-md text-balance text-[clamp(1.75rem,3.4vw,2.75rem)] font-bold leading-tight tracking-[-0.025em]">
                 Arrive relaxed. Leave on time.
               </h2>
               <p className="mt-3 max-w-sm text-white/85">Book a lounge, a greeter or a ride in a few minutes.</p>
