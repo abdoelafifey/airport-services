@@ -85,9 +85,8 @@ export default async function Home() {
         <Container>
           <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14">
             <div>
-              <h1 className="text-[clamp(2.5rem,5.4vw,4.25rem)] font-bold leading-[1.04] tracking-[-0.035em]">
-                Your airport, <br className="hidden sm:block" />
-                sorted before you land.
+              <h1 className="text-[clamp(2.5rem,5.4vw,4.25rem)] font-bold leading-[1.04] tracking-[-0.035em] text-balance">
+                Your airport, sorted before you&nbsp;land.
               </h1>
               <p className="mt-5 max-w-md text-lg text-ink-soft">
                 Book lounges, meet &amp; greet and transfers in one place. Confirmed by email in minutes.
